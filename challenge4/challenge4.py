@@ -1,27 +1,28 @@
+
+# For this challenge, we are going to:
+# write a function that display the fibonacci sequence up to a certain number.
+# If I want the fibonacci for the 9 order of the sequence, I should see 21.
+# Keep your function to calculate the fibonacci sequence separate from the file that has the unittest.main().
+# see fibFuncs
+
+# However, to add additional challenge to this challenge, instead of displaying the number 21,
+# I want the string # representation of twenty one.
+# This will require you to use string concatenation to print out the string.
+
+
 import unittest
-
-from selenium import webdriver
-
-from time import sleep
-
-class Challenge4FibSequence(unittest.TestCase):
+from challenges.challenge4 import fibFuncs
 
 
-    def fibSeq(n):
-        n = 5
+class Challenge4(unittest.TestCase):
 
-        if n == 0:
-            return n
-        if n == 1
-            return 1
-        else:
-            return fibSeq(n-1) + fibSeq(n-2)
+    def test_challange4(self):
+        answer = fibFuncs.fiblooping(15)
 
-            #if n <= 1:
-                #return n
-            #else:
-                #return(recur_fibo(n-1) + recur_fibo(n-2))
+        # adding this see if function is working how i expect.  I suppose I could run debug as well
+        print(answer)
 
+#now look at using an array or tuple or dictionary?
 
 if __name__ == '__main__':
     unittest.main()
