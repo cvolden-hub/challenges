@@ -25,8 +25,11 @@ class Challenge4(unittest.TestCase):
         for i in range(timestoloop):
             print(fibFuncs.fibLooping(i))
 
-#now look at using an array or tuple or dictionary?
-
+        #now look at using an array or tuple or dictionary?
+    def convertnum(self, result):
+        ones = {0: "", 1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight",
+                      9: "nine", }
+        tens = {0: "", 1: "ten", 2: "twenty", 3: "thirty", 4: "forty", 5: "fifty", 6: "sixty"}
 
 
 if __name__ == '__main__':
