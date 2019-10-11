@@ -23,14 +23,29 @@ class Challenge4(unittest.TestCase):
         timestoloop = 9
 
         for i in range(timestoloop):
-            print(fibFuncs.fibLooping(i))
+            #print(fibFuncs.fibLooping(i))
+            answer = (fibFuncs.fibLooping(i))
+            #print (answer)
+            something = self.intWrd((answer)
 
-        #now look at using an array or tuple or dictionary?
-    def convertnum(self, result):
-        ones = {0: "", 1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight",
-                      9: "nine", }
-        tens = {0: "", 1: "ten", 2: "twenty", 3: "thirty", 4: "forty", 5: "fifty", 6: "sixty"}
+    def intWrd (self, result):
+        i = 0
+        intval = " "
+        nword = str(result)
 
+        ones = {0:"", 1:"one", 2:"two", 3:"three", 4:"four", 5:"five", 6:"six", 7:"seven", 8:"eight", 9: "nine",}
+        tens = {0:"", 1:"ten", 2:"twenty", 3:"thirty", 4:"forty", 5:"fifty", 6:"sixty"}
+        dterms = {0:"",1:""}
+
+    def len (self, nword):
+        if int(nword) <20:
+            intval = ones.get(int(nword))
+        else int(nword):
+            intval = tens.get[int(nword[int(i)])]
+            i += 1
+            intval += less
+
+    intWard
 
 if __name__ == '__main__':
     unittest.main()
