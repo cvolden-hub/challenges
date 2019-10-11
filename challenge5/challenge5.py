@@ -24,6 +24,7 @@ class Challenge5(unittest.TestCase):
 
         self.driver.get("https://www.copart.com")
         self.assertIn("Copart", self.driver.title)
+
         searchInput = self.driver.find_element_by_id("input-search")
         searchInput.send_keys("Exotics")
         searchInput.send_keys(Keys.RETURN)
@@ -41,7 +42,6 @@ class Challenge5(unittest.TestCase):
         sleep (20)
 
         assert "PORSCHE" in makemodel[0].text, "Whoops, I can't find the text PORSCHE"
-
 
         #select = Select(driver.find_elements(By.XPATH,"//select[@id='serverSideDataTable_length']/option[@value='100']"))
 

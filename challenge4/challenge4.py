@@ -11,18 +11,23 @@
 
 
 import unittest
+
+from selenium import webdriver
+
 from challenges.challenge4 import fibFuncs
 
 
 class Challenge4(unittest.TestCase):
 
     def test_challange4(self):
-        answer = fibFuncs.fiblooping(15)
+        timestoloop = 9
 
-        # adding this see if function is working how i expect.  I suppose I could run debug as well
-        print(answer)
+        for i in range(timestoloop):
+            print(fibFuncs.fibLooping(i))
 
 #now look at using an array or tuple or dictionary?
+
+
 
 if __name__ == '__main__':
     unittest.main()
