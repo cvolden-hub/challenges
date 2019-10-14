@@ -25,27 +25,27 @@ class Challenge4(unittest.TestCase):
         for i in range(timestoloop):
             #print(fibFuncs.fibLooping(i))
             answer = (fibFuncs.fibLooping(i))
-            #print (answer)
-            something = self.intWrd((answer)
+            print(answer)
 
-    def intWrd (self, result):
-        i = 0
-        intval = " "
-        nword = str(result)
+    i = 0
+    intval = " "
+    nword = str(result)
 
-        ones = {0:"", 1:"one", 2:"two", 3:"three", 4:"four", 5:"five", 6:"six", 7:"seven", 8:"eight", 9: "nine",}
-        tens = {0:"", 1:"ten", 2:"twenty", 3:"thirty", 4:"forty", 5:"fifty", 6:"sixty"}
-        dterms = {0:"",1:""}
+    onesplace = {1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight', 9: 'Nine',
+                 10: 'Ten', 11: 'Eleven', 12: 'Twelve', 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen', 16: 'Sixteen',
+                 17: 'Seventeen', 18: 'Eighteen', 19: 'Nineteen'}
 
-    def len (self, nword):
-        if int(nword) <20:
-            intval = ones.get(int(nword))
-        else int(nword):
-            intval = tens.get[int(nword[int(i)])]
-            i += 1
-            intval += less
+    tensplace = ['Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety']
 
-    intWard
+    def number(Number):
+        if 1 <= Number < 19:
+            return onesplace[Number]
+        elif 20 <= Number <= 99:
+            tens, below_ten = divmod(Number, 10)
+            return tensplace[tens - 2] + ' ' + onesplace[below_ten]
+        else:
+            print("Number out of range")
+        print()
 
 if __name__ == '__main__':
     unittest.main()

@@ -22,7 +22,7 @@ class Challenge5(unittest.TestCase):
 
     def test_challenge5(self):
 
-        self.driver.get("https://www.copart.com")
+        self.driver.get("https://www.doterra.com")
         self.assertIn("Copart", self.driver.title)
 
         searchInput = self.driver.find_element_by_id("input-search")
