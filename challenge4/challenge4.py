@@ -20,32 +20,53 @@ from challenges.challenge4 import fibFuncs
 class Challenge4(unittest.TestCase):
 
     def test_challange4(self):
-        timestoloop = 9
+        #timestoloop = 9     # change this value
 
-        for i in range(timestoloop):
-            #print(fibFuncs.fibLooping(i))
-            answer = (fibFuncs.fibLooping(i))
-            print(answer)
+        #for i in range(timestoloop):
+            #print(fibFuncs.fibLooping(i))   # using print function to display fib sequnece
+            #print(fibFuncs.fibLooping(8))   # using the print function to display specific value, zero based
+            #answer = (fibFuncs.fibLooping(i))  # setting answer = to the value of i
+        answer2 = (fibFuncs.fibLooping(8))  # seting answer2 to the value in the nth position (zero based) in fibFuncs
+            #print(answer)   # using print function to display name
+        #print(answer2)
 
-    i = 0
-    intval = " "
-    nword = str(result)
+       #o
+        # nesplace values
+        onesplace = {1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight', 9: 'Nine',
+                    10: 'Ten', 11: 'Eleven', 12: 'Twelve', 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen', 16: 'Sixteen',
+                    17: 'Seventeen', 18: 'Eighteen', 19: 'Nineteen', 20: 'Twendy', 21: 'Twenty One'}
 
-    onesplace = {1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight', 9: 'Nine',
-                 10: 'Ten', 11: 'Eleven', 12: 'Twelve', 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen', 16: 'Sixteen',
-                 17: 'Seventeen', 18: 'Eighteen', 19: 'Nineteen'}
+        #tenslace vaues
+        tensplace = {20: 'Twenty', 30: 'Thirty', 40: 'Forty', 50: 'Fifty', 60: 'Sixty', 70: 'Seventy', 80: 'Eighty',
+                     90: 'Ninety'}
 
-    tensplace = ['Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety']
+        #hundredsplace values
+        hundredsplace = ["One Hundred", "Two Hundred", "Three Hundred", "Foru Hundred", "Five Hundred", "Six Hundred",
+                         "Seven Hundred", "Eight Hundred", "Nine Hundred"]
+        i = 0
 
+        if answer2 < 22:
+            intval = onesplace.get(int(answer2))
+            print(answer2, "-", str(intval))
+        else:
+            intval = tensplace.get[int(answer2[int(i)])]
+            #print(intval)
+            print(answer2, "-", str(intval))
+
+"""
     def number(Number):
-        if 1 <= Number < 19:
+        if 1 <= answer2 < 19:  #change Number to answer
             return onesplace[Number]
-        elif 20 <= Number <= 99:
+        elif 20 <= answer2 <= 99:  #change Number to answer
             tens, below_ten = divmod(Number, 10)
-            return tensplace[tens - 2] + ' ' + onesplace[below_ten]
+            print(return tensplace[tens - 2] + ' ' + onesplace[below_ten])  #SO HOW DO I GET THIS VALUE INTO FUNCTIO
         else:
             print("Number out of range")
-        print()
+        print(Number) 
+
+
+    number(Number)
+"""
 
 if __name__ == '__main__':
     unittest.main()
