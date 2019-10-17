@@ -30,11 +30,11 @@ class Challenge5(unittest.TestCase):
         sleep(5)
 
         self.assertIn("Exotics", self.driver.title)
-        #select = Select(driver.find_element_by_id('serverSideDataTable_length'))
-        select.select_by_value('100')
-        #self.driver.find_elements(By.XPATH("//select[@name='serverSideDataTable_length']/option[value()='100']")).click
-        sleep(5)
 
+        drpEntys = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
+        drpEntys.click()
+        options = self.driver.find_elements_by_xpath("//select[@name='serverSideDataTable_length']/option")
+        options[2].click()
 
         elements = self.driver.find_elements(By.XPATH, "//span[contains(text(),'PORSCHE')]")
 
