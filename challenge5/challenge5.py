@@ -24,21 +24,57 @@ class Challenge5(unittest.TestCase):
     def test_challenge5(self):
         self.driver.get("https://www.copart.com")
         self.assertIn("Copart", self.driver.title)
+
+        #Find search field and enter Exotics and search
         searchInput = self.driver.find_element_by_id("input-search")
         searchInput.send_keys("Exotics")
         searchInput.send_keys(Keys.RETURN)
         sleep(5)
 
+        #verify Exotics in title
         self.assertIn("Exotics", self.driver.title)
 
+        #change show entries from 20 to 100
         drpEntys = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         drpEntys.click()
         options = self.driver.find_elements_by_xpath("//select[@name='serverSideDataTable_length']/option")
         options[2].click()
 
-        elements = self.driver.find_elements(By.XPATH, "//span[contains(text(),'PORSCHE')]")
+        #wait for page to update then find porsche
+        sleep(5)
 
-        assert "PORSCHE" in elements[0].text, "Whoops, I can't find the text PORSCHE"
+        self.assertIn("Exotics", self.driver.title)
+
+        make = self.driver.find_elements(By.XPATH, "//span[contains(text(),'PORSCHE')]")
+        assert "PORSCHE" in make[0].text, "Whoops, I can't find the text PORSCHE"
+
+        model = self.driver.find_elements(By.XPATH, "//span[contains(text(),'CAYENNE S')]")
+        assert "CAYENNE S" in model[0].text, "Whoops, I can't find the text PORSCHE"
+        filter = self.driver.find_element(By.XPATH, "//*[.='Filter Options')")
+        filter.click()
+
+        table.click()
+
+        """
+        i = 0
+        while i < len(make):
+            print(make[i].text + " - " +make[1].get_attribute("lotsearchlotmodel"))
+            i += 1
+
+        assert "PORSCHE" in make[0].text, "Whoops, I can't find the text PORSCHE"
+
+        model = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[1]/td[6]/span)
+
+        #now look for models of porsche on first page
+
+                                          < span
+        
+
+        make = self.driver.find_elements(By.XPATH, "//select[@uname='lotsearchLotmake' > PORSCHE < / span >
+        // *[ @ id = "serverSideDataTable"] / tbody / tr[1] / td[5] / span
+"""
+
+
 
 if __name__ == '__main__':
     unittest.main()
