@@ -49,19 +49,29 @@ class Challenge5(unittest.TestCase):
         assert "PORSCHE" in make[0].text, "Whoops, I can't find the text PORSCHE"
 
         model = self.driver.find_elements(By.XPATH, "//span[contains(text(),'CAYENNE S')]")
-        assert "CAYENNE S" in model[0].text, "Whoops, I can't find the text PORSCHE"
-        filter = self.driver.find_element(By.XPATH, "//*[.='Filter Options')")
-        filter.click()
+        assert "CAYENNE S" in model[0].text, "Whoops, I can't find the text model"
 
-        table.click()
+        # new stuff trying to get work
+        for model in self.driver.find_elements(By.XPATH, "//span[contains(text(),'[CAYENNE S]')]"):
+            print(model.text)
+
+        for (row = 1:row <= 100):
+            model in self.driver.find_elements(By.XPATH, "//span[contains(text(),'[CAYENNE S]')]")
+            print(model.text)
+            row +1
+
+        make = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[14]/td[5]/span)")
+            print(make)
+
+
 
         """
         i = 0
         while i < len(make):
-            print(make[i].text + " - " +make[1].get_attribute("lotsearchlotmodel"))
             i += 1
 
         assert "PORSCHE" in make[0].text, "Whoops, I can't find the text PORSCHE"
+            print(make[i].text + " - " +make[1].get_attribute("lotsearchlotmodel"))
 
         model = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[1]/td[6]/span)
 
