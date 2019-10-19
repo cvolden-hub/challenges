@@ -25,47 +25,53 @@ class Challenge5(unittest.TestCase):
         self.driver.get("https://www.copart.com")
         self.assertIn("Copart", self.driver.title)
 
-        #Find search field and enter Exotics and search
+        #Find search field and enter Porsche and search
         searchInput = self.driver.find_element_by_id("input-search")
-        searchInput.send_keys("Exotics")
+        searchInput.send_keys("Porsche")
         searchInput.send_keys(Keys.RETURN)
         sleep(5)
-
-        #verify Exotics in title
-        self.assertIn("Exotics", self.driver.title)
-
+        """
         #change show entries from 20 to 100
         drpEntys = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         drpEntys.click()
         options = self.driver.find_elements_by_xpath("//select[@name='serverSideDataTable_length']/option")
         options[2].click()
-
-        #wait for page to update then find porsche
         sleep(5)
 
-        self.assertIn("Exotics", self.driver.title)
-
+        # verify Porsche in title
         make = self.driver.find_elements(By.XPATH, "//span[contains(text(),'PORSCHE')]")
         assert "PORSCHE" in make[0].text, "Whoops, I can't find the text PORSCHE"
 
+        # now get all models
+        ##this gets me models where text = cayenne.  need to  identifiy the text attribure
         model = self.driver.find_elements(By.XPATH, "//span[contains(text(),'CAYENNE S')]")
+        print(model.text)
+        print(model.tag_name)
+        print(model.location)
+
+            
         assert "CAYENNE S" in model[0].text, "Whoops, I can't find the text model"
 
         # new stuff trying to get work
         for model in self.driver.find_elements(By.XPATH, "//span[contains(text(),'[CAYENNE S]')]"):
-            print(model.text)
+            
 
-        for (row = 1:row <= 100):
+        for i in range(1,100):
             model in self.driver.find_elements(By.XPATH, "//span[contains(text(),'[CAYENNE S]')]")
             print(model.text)
-            row +1
+            i += 1
+
+            
+            model in self.driver.find_elements(By.XPATH, "//span[contains(text(),'[CAYENNE S]')]")
+            print(model.text)
+
 
         make = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[14]/td[5]/span)")
             print(make)
 
 
 
-        """
+        
         i = 0
         while i < len(make):
             i += 1
