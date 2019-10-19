@@ -26,18 +26,27 @@ class Challenge5(unittest.TestCase):
         self.assertIn("Copart", self.driver.title)
 
         #Find search field and enter Porsche and search
-        searchInput = self.driver.find_element_by_id("input-search")
-        searchInput.send_keys("Porsche")
+        searchInput = self.driver.find_element_by_id("input-search")    # this finds the search field
+        searchInput.send_keys("Porsche")                                # this enters porsche
         searchInput.send_keys(Keys.RETURN)
+
+        #when Porsche is entered a list displays, this is intended to select porsche from the top of list
+        #poption = self.driver.find_element_by_xpath("//select[@name='typeahead-13-9674-option-0']/option")
+        #poption.click()
         sleep(5)
-        """
+
+
         #change show entries from 20 to 100
         drpEntys = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         drpEntys.click()
-        options = self.driver.find_elements_by_xpath("//select[@name='serverSideDataTable_length']/option")
+        sleep(10)
+
+        """
+        options = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']/option")
         options[2].click()
         sleep(5)
 
+        
         # verify Porsche in title
         make = self.driver.find_elements(By.XPATH, "//span[contains(text(),'PORSCHE')]")
         assert "PORSCHE" in make[0].text, "Whoops, I can't find the text PORSCHE"
@@ -48,7 +57,6 @@ class Challenge5(unittest.TestCase):
         print(model.text)
         print(model.tag_name)
         print(model.location)
-
             
         assert "CAYENNE S" in model[0].text, "Whoops, I can't find the text model"
 
