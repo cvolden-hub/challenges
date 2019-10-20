@@ -28,20 +28,31 @@ class Challenge5(unittest.TestCase):
         #Find search field and enter Porsche and search
         searchInput = self.driver.find_element_by_id("input-search")    # this finds the search field
         searchInput.send_keys("Porsche")                                # this enters porsche
-        searchInput.send_keys(Keys.RETURN)
+        #searchInput.send_keys(Keys.RETURN)                              # this press enter key
 
+        #object changed so send_keys was not working  trying this out
+        #wait for dropdown to go away before selecting 100  *[@id
         #when Porsche is entered a list displays, this is intended to select porsche from the top of list
-        #poption = self.driver.find_element_by_xpath("//select[@name='typeahead-13-9674-option-0']/option")
-        #poption.click()
-        sleep(5)
+        poption = self.driver.find_elements_by_xpath("//a[starts-with(@href,'./popular/category')]")
+        < a href = "./popular/category/exotics?intcmp=web_homepage_categories_exotics_public_en" > Exotics < / a >
+        pmodel = self.driver.find_elememt(By.XPATHm "//a[starts-with(@href,'./")
 
+        poption.__getattribute__("title")
+        print(poption)
+        """
+        <a href="" tabindex="-1" ng-bind-html="match.label | uibTypeaheadHighlight:query" ng-attr-title="{{match.label}}" \
+        "" title="porsche cayenne"><strong>pors</strong>che cayenne</a>
+
+        poption.click()
+        sleep(30)
+
+     
 
         #change show entries from 20 to 100
         drpEntys = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         drpEntys.click()
         sleep(10)
 
-        """
         options = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']/option")
         options[2].click()
         sleep(5)
