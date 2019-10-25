@@ -26,24 +26,27 @@ class Challenge5(unittest.TestCase):
         self.driver.get("https://www.copart.com")
         self.assertIn("Copart", self.driver.title)
 
+        self.driver.maximize_window()
+
         # find search field and enter Porsche, enter txt via send _key
         searchinput = self.driver.find_element_by_id("input-search")
         searchinput.send_keys("Porsche")
-        sleep(5)
         searchinput.send_keys(Keys.RETURN)
-        sleep(5)
 
         # clicking drpdwn
         drpdwn = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         drpdwn.click()
         sleep(5)
-
-        # drpdwn object is zero based.  100 is 2, so get what is in pos 2 and click it
-        #select = Select(driver.find_element_by_id('serverSideDataTable_length'))
-        #nums = select.select_by_value('100')
-        ok = self.driver.find_elements(By.XPATH("//select[@name='serverSideDataTable_length']/option[value()='100']"))
-        print(ok)
+        #
+        # # drpdwn object is zero based.  100 is 2, so get what is in pos 2 and click it
+        # #select = Select(driver.find_element_by_id('serverSideDataTable_length'))
+        # #nums = select.select_by_value('100')
+        # ok = self.driver.find_elements(By.XPATH, "//select[@name='serverSideDataTable_length']/option")
+        drpdwn.send_keys(Keys.ARROW_DOWN)
+        drpdwn.send_keys(Keys.ARROW_DOWN)
         sleep(5)
+        drpdwn.send_keys(Keys.ENTER)
+
 
         #options = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']/option")
         #options[2].click()
@@ -52,7 +55,7 @@ class Challenge5(unittest.TestCase):
         #opt = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         #selector = Select(opt)
         #opt.click()
-        #sleep(5)
+        sleep(10)
 
         # now get the models from the page
         nummod = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
@@ -62,6 +65,15 @@ class Challenge5(unittest.TestCase):
         for i in range(num):
             models = "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span".format(i + 1)
             print(models)
+
+        # now get the models from the page
+        #// *[ @ id = "serverSideDataTable"] / tbody / tr[1] / td[12] / span
+        numdam = self.driver.find_elements(By.XPATH, "//*[@ id='serverSideDataTable']/tbody/tr[{}]/td[12]/span")
+        num2 = len(numdam)
+
+        for x in range(num2):
+            damage = "//*[@id='serverSideDataTable']/tbody/tr[1]/td[12]/span".format(x + 1)
+            print(damage)
 
 
         """
