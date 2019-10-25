@@ -31,7 +31,9 @@ class Challenge5(unittest.TestCase):
         # find search field and enter Porsche, enter txt via send _key
         searchinput = self.driver.find_element_by_id("input-search")
         searchinput.send_keys("Porsche")
+        sleep(5)
         searchinput.send_keys(Keys.RETURN)
+        sleep(5)
 
         # clicking drpdwn
         drpdwn = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
@@ -46,7 +48,6 @@ class Challenge5(unittest.TestCase):
         drpdwn.send_keys(Keys.ARROW_DOWN)
         sleep(5)
         drpdwn.send_keys(Keys.ENTER)
-
 
         #options = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']/option")
         #options[2].click()
@@ -66,15 +67,13 @@ class Challenge5(unittest.TestCase):
             models = "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span".format(i + 1)
             print(models)
 
-        # now get the models from the page
-        #// *[ @ id = "serverSideDataTable"] / tbody / tr[1] / td[12] / span
-        numdam = self.driver.find_elements(By.XPATH, "//*[@ id='serverSideDataTable']/tbody/tr[{}]/td[12]/span")
+        # now get the damage from the page
+        numdam = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[12]/span")
         num2 = len(numdam)
 
         for x in range(num2):
-            damage = "//*[@id='serverSideDataTable']/tbody/tr[1]/td[12]/span".format(x + 1)
+            damage = "//*[@id='serverSideDataTable']/tbody/tr{{}}/td[12]/span".format(x + 1)
             print(damage)
-
 
         """
         #object changed so send_keys was not working  trying this out
@@ -93,11 +92,7 @@ class Challenge5(unittest.TestCase):
         poption.click()
         sleep(30)
 
-     
-
-        
-
-        
+               
         # verify Porsche in title
         make = self.driver.find_elements(By.XPATH, "//span[contains(text(),'PORSCHE')]")
         assert "PORSCHE" in make[0].text, "Whoops, I can't find the text PORSCHE"
