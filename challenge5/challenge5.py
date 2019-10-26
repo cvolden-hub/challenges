@@ -64,8 +64,9 @@ class Challenge5(unittest.TestCase):
 
         # iterate
         for i in range(num):
-            models = "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span".format(i + 1)
-            print(models)
+            models = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span"
+                                              .format(i + 1))
+            print(models.text)
 
         # now get the damage from the page
         numdam = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[12]/span")
