@@ -56,6 +56,8 @@ class Challenge5(unittest.TestCase):
         sleep(10)
 
         # now get the models from the page
+        modlist = []
+
         nummod = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
         num = len(nummod)
 
@@ -63,18 +65,29 @@ class Challenge5(unittest.TestCase):
         for i in range(num):
             models = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span"
                                               .format(i + 1))
-            print(models.text)
+            #print(models.text)
+            modlist.append(models.text)
+
+        print(len(modlist))
+        print(modlist[0:5])
+        modlist.count("Cayenne")
 
         # now get the damage from the page
+        damlist = []
+
         numdam = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[12]/span")
         num2 = len(numdam)
 
         for x in range(num2):
             damage = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[12]/span"
                                                .format(x + 1))
-            print(damage.text)
+            #print(damage.text)
+            damlist.append(damage.text)
 
-        """
+        print(len(damlist))
+        print(damlist[0:5])
+
+    """
         #object changed so send_keys was not working  trying this out
         #wait for dropdown to go away before selecting 100  *[@id
         #when Porsche is entered a list displays, this is intended to select porsche from the top of list
@@ -141,7 +154,7 @@ class Challenge5(unittest.TestCase):
 
         make = self.driver.find_elements(By.XPATH, "//select[@uname='lotsearchLotmake' > PORSCHE < / span >
         // *[ @ id = "serverSideDataTable"] / tbody / tr[1] / td[5] / span
-"""
+    """
 
 
 
