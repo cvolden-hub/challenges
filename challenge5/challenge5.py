@@ -39,11 +39,8 @@ class Challenge5(unittest.TestCase):
         drpdwn = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         drpdwn.click()
         sleep(5)
-        #
-        # # drpdwn object is zero based.  100 is 2, so get what is in pos 2 and click it
-        # #select = Select(driver.find_element_by_id('serverSideDataTable_length'))
-        # #nums = select.select_by_value('100')
-        # ok = self.driver.find_elements(By.XPATH, "//select[@name='serverSideDataTable_length']/option")
+
+        # select element 2 fromm list
         drpdwn.send_keys(Keys.ARROW_DOWN)
         drpdwn.send_keys(Keys.ARROW_DOWN)
         sleep(5)
@@ -73,8 +70,9 @@ class Challenge5(unittest.TestCase):
         num2 = len(numdam)
 
         for x in range(num2):
-            damage = "//*[@id='serverSideDataTable']/tbody/tr{{}}/td[12]/span".format(x + 1)
-            print(damage)
+            damage = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[12]/span"
+                                               .format(x + 1))
+            print(damage.text)
 
         """
         #object changed so send_keys was not working  trying this out
