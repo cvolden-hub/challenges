@@ -12,6 +12,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.select import Select
+from collections import Counter
+
 from time import sleep
 
 class Challenge5(unittest.TestCase):
@@ -68,9 +70,10 @@ class Challenge5(unittest.TestCase):
             #print(models.text)
             modlist.append(models.text)
 
-        print(len(modlist))
-        print(modlist[0:5])
-        modlist.count("Cayenne")
+        #print(len(modlist))
+        #print(modlist[0:5])
+        #print(modlist.count("Cayenne S"))
+        print(Counter(modlist))
 
         # now get the damage from the page
         damlist = []
@@ -84,8 +87,12 @@ class Challenge5(unittest.TestCase):
             #print(damage.text)
             damlist.append(damage.text)
 
-        print(len(damlist))
-        print(damlist[0:5])
+        #print(len(damlist))
+        #print(damlist[0:5])
+        print(Counter(damlist))
+        #print(damlist.count("Front End"))
+        #damtot = damlist.count("Front End")
+        #print("There are ", damtot, " vehicles with Front End damage")
 
     """
         #object changed so send_keys was not working  trying this out
