@@ -10,6 +10,7 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.select import Select
 from collections import Counter
@@ -33,11 +34,18 @@ class Challenge5(unittest.TestCase):
         # find search field and enter Porsche, enter txt via send _key
         searchinput = self.driver.find_element_by_id("input-search")
         searchinput.send_keys("Porsche")
+
+        # FIGURE OUT HOW TO IMPLEMNET THIS
+        #myElem = WebDriverWait(self.driver, wait).until(EC.presence_of_element_located((By.XPATH, load)))
+        #except TimeoutException:
+        #print("Loading took too much time!")
+
         sleep(5)
         searchinput.send_keys(Keys.RETURN)
         sleep(5)
 
         # clicking drpdwn
+
         drpdwn = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         drpdwn.click()
         sleep(5)
@@ -48,13 +56,6 @@ class Challenge5(unittest.TestCase):
         sleep(5)
         drpdwn.send_keys(Keys.ENTER)
 
-        #options = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']/option")
-        #options[2].click()
-        #sleep(5)
-
-        #opt = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
-        #selector = Select(opt)
-        #opt.click()
         sleep(10)
 
         # now get the models from the page
@@ -66,14 +67,14 @@ class Challenge5(unittest.TestCase):
         # iterate
         for i in range(num):
             models = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span"
-                                              .format(i + 1))
+                                                        .format(i + 1))
             #print(models.text)
             modlist.append(models.text)
 
-        #print(len(modlist))
-        #print(modlist[0:5])
-        #print(modlist.count("Cayenne S"))
-        print(Counter(modlist))
+            #print(len(modlist))
+            #print(modlist[0:5])
+            print(modlist.count('CAYENNE S'))
+            print(Counter(modlist))
 
         # now get the damage from the page
         damlist = []
@@ -83,16 +84,13 @@ class Challenge5(unittest.TestCase):
 
         for x in range(num2):
             damage = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[12]/span"
-                                               .format(x + 1))
+                                                        .format(x + 1))
             #print(damage.text)
             damlist.append(damage.text)
+            damtot = damlist.count('FRONT END')
 
-        #print(len(damlist))
-        #print(damlist[0:5])
-        print(Counter(damlist))
-        #print(damlist.count("Front End"))
-        #damtot = damlist.count("Front End")
-        #print("There are ", damtot, " vehicles with Front End damage")
+        print("There are ",damtot," vehicles with Front End damage")
+
 
     """
         #object changed so send_keys was not working  trying this out

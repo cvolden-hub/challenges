@@ -18,15 +18,15 @@ from challenges.challenge4 import fibFuncs
 
 class Challenge4(unittest.TestCase):
 
+    def setUp(self):
+        self.driver = webdriver.Chrome("../chromedriver.exe")
+
+    def tearDown(self):
+        self.driver.close()
+
     def test_challange4(self):
 
-        def setUp(self):
-            self.driver = webdriver.Chrome("../chromedriver.exe")
-
-        def tearDown(self):
-            self.driver.close()
-
-        answer2 = (fibFuncs.fibLooping(8))  # seting answer2 to the value in the nth position (zero based) in fibFuncs
+        answer2 = (fibFuncs.fibLooping(27))  # seting answer2 to the value in the nth position (zero based) in fibFuncs
 
         # nesplace values
         onesplace = {1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight', 9: 'Nine',
