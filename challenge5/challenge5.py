@@ -68,13 +68,9 @@ class Challenge5(unittest.TestCase):
         for i in range(num):
             models = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span"
                                                         .format(i + 1))
-            #print(models.text)
             modlist.append(models.text)
 
-            #print(len(modlist))
-            #print(modlist[0:5])
-            print(modlist.count('CAYENNE S'))
-            print(Counter(modlist))
+        print(Counter(modlist).items())
 
         # now get the damage from the page
         damlist = []
@@ -85,7 +81,6 @@ class Challenge5(unittest.TestCase):
         for x in range(num2):
             damage = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[12]/span"
                                                         .format(x + 1))
-            #print(damage.text)
             damlist.append(damage.text)
             damtot = damlist.count('FRONT END')
 
