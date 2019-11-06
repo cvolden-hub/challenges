@@ -61,12 +61,11 @@ class Challenge5(unittest.TestCase):
         # now get the models from the page
         modlist = {}
 
-        nummod = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
-        num = len(nummod)
+        models = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
 
         # iterate
-        for element in nummod:
-            modlist[element.text] +=1
+        for model in models:
+            modlist[model.text] +=1
             print(modlist)
 
         """   
