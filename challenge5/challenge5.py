@@ -26,14 +26,13 @@ class Challenge5(unittest.TestCase):
         self.driver.close()
 
     def test_challenge5(self):
+        self.driver.maximize_window()
         self.driver.get("https://www.copart.com")
         self.assertIn("Copart", self.driver.title)
 
-        self.driver.maximize_window()
-
         # find search field and enter Porsche, enter txt via send _key
         searchinput = self.driver.find_element_by_id("input-search")
-        searchinput.send_keys("Porsche")
+        searchinput.send_keys("cayanne")
 
         # FIGURE OUT HOW TO IMPLEMNET THIS
         #myElem = WebDriverWait(self.driver, wait).until(EC.presence_of_element_located((By.XPATH, load)))
@@ -45,7 +44,6 @@ class Challenge5(unittest.TestCase):
         sleep(5)
 
         # clicking drpdwn
-
         drpdwn = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         drpdwn.click()
         sleep(5)
@@ -56,7 +54,7 @@ class Challenge5(unittest.TestCase):
         sleep(5)
         drpdwn.send_keys(Keys.ENTER)
 
-        sleep(10)
+        sleep(5)
 
         # now get the models from the page
         modlist = {}
@@ -66,7 +64,20 @@ class Challenge5(unittest.TestCase):
         # iterate
         for model in models:
             modlist[model.text] +=1
-            print(modlist)
+
+        print(modlist)
+
+        # now get the damage from the page
+        damlist = []
+
+        damages = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[12]/span")
+        num2 = len(numdam)
+
+        for damtype in damages:
+            damlist[damtype.text] +=1
+            damtot = damlist.count('FRONT END')
+
+        print("There are ", damtot, " vehicles with Front End damage")
 
         """   
         for i in range(num):
