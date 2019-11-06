@@ -59,12 +59,17 @@ class Challenge5(unittest.TestCase):
         sleep(10)
 
         # now get the models from the page
-        modlist = []
+        modlist = {}
 
         nummod = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
         num = len(nummod)
 
         # iterate
+        for element in nummod:
+            modlist[element.text] +=1
+            print(modlist)
+
+        """   
         for i in range(num):
             models = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span"
                                                         .format(i + 1))
@@ -85,7 +90,7 @@ class Challenge5(unittest.TestCase):
             damtot = damlist.count('FRONT END')
 
         print("There are ",damtot," vehicles with Front End damage")
-
+        """
 
     """
         #object changed so send_keys was not working  trying this out
