@@ -32,7 +32,7 @@ class Challenge5(unittest.TestCase):
 
         # find search field and enter Porsche, enter txt via send _key
         searchinput = self.driver.find_element_by_id("input-search")
-        searchinput.send_keys("cayanne")
+        searchinput.send_keys("PORSCHE")
 
         # FIGURE OUT HOW TO IMPLEMNET THIS
         #myElem = WebDriverWait(self.driver, wait).until(EC.presence_of_element_located((By.XPATH, load)))
@@ -57,21 +57,53 @@ class Challenge5(unittest.TestCase):
         sleep(5)
 
         # now get the models from the page
+
+        """  
         modlist = {}
 
         models = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
 
         # iterate
+
         for model in models:
+            if model.text in models:
+                models[model.text] += 1
+            else:
+                models.append[model.text]
+
             modlist[model.text] +=1
 
         print(modlist)
 
+       
+        modlist = {}
+        
+        models = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
+        
+        for model in models:
+            modlist[model.text] +=1
+
+            print(modlist)
+        
+
+        ##----------------------------------------------------------------------------------------------------------
+        # iterate
+        modlist = []
+
+        for i in range(num):
+            models = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span"
+                                                        .format(i + 1))
+            modlist.append(models.text)
+
+        print(Counter(modlist))
+         
+
         # now get the damage from the page
         damlist = []
 
-        damages = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[12]/span")
-        num2 = len(numdam)
+        damages = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[12]/span"
+                                                      .format(i + 1))
+        num2 = len(damages)
 
         for damtype in damages:
             damlist[damtype.text] +=1
@@ -79,7 +111,14 @@ class Challenge5(unittest.TestCase):
 
         print("There are ", damtot, " vehicles with Front End damage")
 
-        """   
+
+        """
+
+        modlist = []
+
+        nummod = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span")
+        num = len(nummod)
+
         for i in range(num):
             models = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span"
                                                         .format(i + 1))
@@ -100,77 +139,6 @@ class Challenge5(unittest.TestCase):
             damtot = damlist.count('FRONT END')
 
         print("There are ",damtot," vehicles with Front End damage")
-        """
-
-    """
-        #object changed so send_keys was not working  trying this out
-        #wait for dropdown to go away before selecting 100  *[@id
-        #when Porsche is entered a list displays, this is intended to select porsche from the top of list
-        poption = self.driver.find_elements_by_xpath("//a[starts-with(@href,'./popular/category')]")
-        < a href = "./popular/category/exotics?intcmp=web_homepage_categories_exotics_public_en" > Exotics < / a >
-
-
-        poption.__getattribute__("title")
-        print(poption)
-        
-        <a href="" tabindex="-1" ng-bind-html="match.label | uibTypeaheadHighlight:query" ng-attr-title="{{match.label}}" \
-        "" title="porsche cayenne"><strong>pors</strong>che cayenne</a>
-
-        poption.click()
-        sleep(30)
-
-               
-        # verify Porsche in title
-        make = self.driver.find_elements(By.XPATH, "//span[contains(text(),'PORSCHE')]")
-        assert "PORSCHE" in make[0].text, "Whoops, I can't find the text PORSCHE"
-
-        # now get all models
-        ##this gets me models where text = cayenne.  need to  identifiy the text attribure
-        model = self.driver.find_elements(By.XPATH, "//span[contains(text(),'CAYENNE S')]")
-        print(model.text)
-        print(model.tag_name)
-        print(model.location)
-            
-        assert "CAYENNE S" in model[0].text, "Whoops, I can't find the text model"
-
-        # new stuff trying to get work
-        for model in self.driver.find_elements(By.XPATH, "//span[contains(text(),'[CAYENNE S]')]"):
-            
-
-        for i in range(1,100):
-            model in self.driver.find_elements(By.XPATH, "//span[contains(text(),'[CAYENNE S]')]")
-            print(model.text)
-            i += 1
-
-            
-            model in self.driver.find_elements(By.XPATH, "//span[contains(text(),'[CAYENNE S]')]")
-            print(model.text)
-
-
-        make = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[14]/td[5]/span)")
-            print(make)
-
-
-
-        
-        i = 0
-        while i < len(make):
-            i += 1
-
-        assert "PORSCHE" in make[0].text, "Whoops, I can't find the text PORSCHE"
-            print(make[i].text + " - " +make[1].get_attribute("lotsearchlotmodel"))
-
-        model = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[1]/td[6]/span)
-
-        #now look for models of porsche on first page
-
-                                          < span
-        
-
-        make = self.driver.find_elements(By.XPATH, "//select[@uname='lotsearchLotmake' > PORSCHE < / span >
-        // *[ @ id = "serverSideDataTable"] / tbody / tr[1] / td[5] / span
-    """
-
 
 
 if __name__ == '__main__':
