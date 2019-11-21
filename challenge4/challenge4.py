@@ -28,33 +28,51 @@ class Challenge4(unittest.TestCase):
 
         fibval = (fibFuncs.fibLooping(8))  # seting fibval to the value in the nth position (zero based) in fibFuncs
 
+        #nested_dict goes here
         # oneplace values
-        oneplace = {1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight', 9: 'Nine'}
+        onesplace = {0: "", 1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight',
+                     9: 'Nine', 10: 'ten'}
 
-        onesplace = {10: 'Ten', 11: 'Eleven', 12: 'Twelve', 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen', 16: 'Sixteen',
-                    17: 'Seventeen', 18: 'Eighteen', 19: 'Nineteen'}
+        teens = {11: 'Eleven', 12: 'Twelve', 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen', 16: 'Sixteen',
+                      17: 'Seventeen', 18: 'Eighteen', 19: 'Nineteen'}
 
         #tenslace vaues
-        tensplace = {2: 'Twenty', 3: 'Thirty', 4: 'Forty', 5: 'Fifty', 6: 'Sixty', 7: 'Seventy', 8: 'Eighty',
+        tensplace = {0: "", 1: 'Ten', 2: 'Twenty', 3: 'Thirty', 4: 'Forty', 5: 'Fifty', 6: 'Sixty', 7: 'Seventy', 8: 'Eighty',
                      9: 'Ninety'}
 
         #hundredsplace values
-        hundredsplace = {1: "One Hundred", 2: "Two Hundred", 3: "Three Hundred", 4: "Foru Hundred",
+        hundredsplace = {0: "", 1: "One Hundred", 2: "Two Hundred", 3: "Three Hundred", 4: "Four Hundred",
                          5: "Five Hundred", 6: "Six Hundred", 7: "Seven Hundred", 8: "Eight Hundred",
                          9: "Nine Hundred"}
 
         #thousandplace values
-        thousandplace = {1000: 'One Thousand', 2000: 'Two Thousand', 3000: 'Three Thousand', 4000: 'Four Thousand',
+        thousandplace = {0: "", 1: 'One Thousand', 2000: 'Two Thousand', 3000: 'Three Thousand', 4000: 'Four Thousand',
                          5000: 'Five Thousand', 6000: 'Six Thousand', 7000: 'Seven Thousand', 8000: 'Eight Thousadn',
                          9000: 'Nine Thousand'}
 
-        if fibval < 10:
-            intval = oneplace.get(int(fibval))
-            print(fibval, "-", str(intval))
+        #tenthousannsplace values
+        tenthousandsplace = {0: "", 10: 'Ten Thousand'}
 
-        elif fibval < 20:
+        if fibval < 10:
             intval = onesplace.get(int(fibval))
             print(fibval, "-", str(intval))
+
+        elif fibval <20:
+             intval = teens.get(int(fibval))
+             print(fibval, " - ", str(intval))
+
+        elif fibval > 19 < 100:
+             intval = []
+             intval += str(fibval)
+
+             what = intval.index(tensplace[2])
+
+             for i in range(len(intval -1)):
+                 print(tensplace,str(intval))
+                 
+                 intval = tensplace.get(int(fibval))
+                 numdigits = len(intval)
+                 print(fibval, "-", str(intval))
 
         elif fibval > 19:
             intval = []
@@ -65,6 +83,7 @@ class Challenge4(unittest.TestCase):
 
             if numdigits == 2:
                 tens = intval.get(int[0])
+
 
                 ones = intval.get(int[1])
 
