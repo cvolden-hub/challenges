@@ -26,7 +26,7 @@ class Challenge4(unittest.TestCase):
 
     def test_challange4(self):
 
-        fibval = (fibFuncs.fibLooping(25))  # seting fibval to the value in the nth position (zero based) in fibFuncs
+        fibval = (fibFuncs.fibLooping(26))  # seting fibval to the value in the nth position (zero based) in fibFuncs
         #fibval =17908
         print(fibval)
 
@@ -104,30 +104,40 @@ class Challenge4(unittest.TestCase):
             intval = []
             intval += str(fibval)
 
-            indexzero = tenthousands.get(int(intval[0]))
-            indexone = thousands.get(int(intval[1]))
-            indextwo = hundreds.get(int(intval[2]))
-            indexthree = tens.get(int(intval[3]))
-            indexfour = ones.get(int(intval[4]))
+            indexzero = tenthousands.get(int(intval[0]))    # 1
+            indexone = thousands.get(int(intval[1]))        # 7
+            indextwo = hundreds.get(int(intval[2]))         # 7
+            indexthree = tens.get(int(intval[3]))           # 1
+            indexfour = ones.get(int(intval[4]))            # 1
 
-            firstwo = int(str(fibval)[:2])
-            lastwo = int(str(fibval)[-2:])
+            firstwo = int(str(fibval)[:2])                  # Seventeen
+            lastwo = int(str(fibval)[-2:])                  # Eleven
+
+            indexteens = teens.get(int(firstwo))
 
             subindex = ones.get(int(lastwo))
             subindex2 = teens.get(int(lastwo))
 
-            if indexone =='' and lastwo <10:
-                print(fibval, "-", indexzero, indexone, indextwo, subindex)
+            if firstwo <20 and lastwo <20:
+                debug = (fibval, "-", indexteens, "Thousand", indextwo, subindex2)
+                print(debug)
             elif indexone =='' and lastwo <20:
-                print(fibval, "-", indexzero, indexone, indextwo, indexthree, indexfour, subindex2)
-            else:
-                index = teens.get(int(firstwo))
-                indexzero = hundreds.get(int(intval[0]))
-                indexone = tens.get(int(intval[1]))
+                debug = (fibval, "-", indexzero, indextwo, indexthree, indexfour)
+                print(debug)
+            elif firstwo <100:
+                indexzero = tens.get(int(intval[0]))
+                indexone = ones.get(int(intval[1]))
                 indextwo = hundreds.get(int(intval[2]))
-                indexthree = tens.get(int(intval[3]))
-                indexfour = ones.get(int(intval[4]))
-                print(fibval, "-", index, "Thousand", indextwo, indexthree, indexfour, subindex, subindex2)
+                if lastwo <20:
+                    index = teens.get(int(lastwo))
+                    debug = (fibval, "'-",indexzero, indexone, "Thousand", indextwo, teens)
+                else:
+                    indexthree = tens.get(int(intval[3]))
+                    indexfour = ones.get(int(intval[4]))
+                    debug = (fibval, "-", indexzero, indexone, "Thousand",indextwo, indexthree, indexfour)
+                    print(debug)
+
+        # hundredthousand
 
         """
              for i in range(len(intval -1)):
