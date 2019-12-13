@@ -15,145 +15,188 @@ from selenium import webdriver
 
 from challenges.challenge4 import fibFuncs
 
+# ones
+ones = {0: "", 1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight',
+        9: 'Nine', 10: 'ten'}
+
+# teens
+teens = {0: "", 10: 'Ten', 11: 'Eleven', 12: 'Twelve', 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen', 16: 'Sixteen',
+         17: 'Seventeen', 18: 'Eighteen', 19: 'Nineteen'}
+
+# tens
+tens = {0: "", 1: 'Ten', 2: 'Twenty', 3: 'Thirty', 4: 'Forty', 5: 'Fifty', 6: 'Sixty', 7: 'Seventy', 8: 'Eighty',
+        9: 'Ninety'}
+
+# hundreds
+hundreds = {0: "", 1: "One Hundred", 2: "Two Hundred", 3: "Three Hundred", 4: "Four Hundred",
+            5: "Five Hundred", 6: "Six Hundred", 7: "Seven Hundred", 8: "Eight Hundred", 9: "Nine Hundred"}
+
+# thousands
+thousands = {0: "", 1: 'One Thousand', 2: 'Two Thousand', 3: 'Three Thousand', 4: 'Four Thousand',
+             5: 'Five Thousand', 6: 'Six Thousand', 7: 'Seven Thousand', 8: 'Eight Thousand',
+             9: 'Nine Thousand'}
+
+# tenthousands
+tenthousands = {0: "", 1: 'Ten Thousand', 2: 'Twenty Thousand', 3: 'Thirty Thousand', 4: 'Forty Thousand',
+                5: 'Fifty Thousand', 6: 'Sixty Thousand', 7: 'Seventy Thousand', 8: 'Eighy Thousand',
+                9: 'Ninty Thousand'}
+
+# hundredthoussands
+hundredthousands = {0: "", 1: "One Hundred", 2: "Two Hundred", 3: "Three Hundred", 4: "Four Hundred",
+                    5: "Five Hundred", 6: "Six Hundred", 7: "Seven Hundred", 8: "Eight Hundred",
+                    9: "Nine Hundred"}
+
 
 class Challenge4(unittest.TestCase):
 
-    def setUp(self):
-        self.driver = webdriver.Chrome("../chromedriver.exe")
+    #def setUp(self):
+     #   self.driver = webdriver.Chrome("../chromedriver.exe")
 
-    def tearDown(self):
-        self.driver.close()
+    #def tearDown(self):
+    #    self.driver.close()
 
-    def test_challange4(self):
-
+    def test_fib_2(self):
         fibval = (fibFuncs.fibLooping(28))  # seting fibval to the value in the nth position (zero based) in fibFuncs
-        #fibval =17908
-        print(fibval)
+        results = self.getresults(fibval)
+        print(fibval, "-", results)
+        assert results == "One"
 
-        # ones
-        ones = {0: "", 1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', 6: 'Six', 7: 'Seven', 8: 'Eight',
-                     9: 'Nine', 10: 'ten'}
+    #def test_21(self):
+     #   fibval = (fibFuncs.fibLooping(2))  # seting fibval to the value in the nth position (zero based) in fibFuncs
+      #  #fibval =17908
+       # return fibval
 
-        teens = {0: "", 10: 'Ten', 11: 'Eleven', 12: 'Twelve', 13: 'Thirteen', 14: 'Fourteen', 15: 'Fifteen', 16: 'Sixteen',
-                      17: 'Seventeen', 18: 'Eighteen', 19: 'Nineteen'}
-
-        #tens
-        tens = {0: "", 1: 'Ten', 2: 'Twenty', 3: 'Thirty', 4: 'Forty', 5: 'Fifty', 6: 'Sixty', 7: 'Seventy', 8: 'Eighty',
-                     9: 'Ninety'}
-
-        #hundreds
-        hundreds = {0: "", 1: "One Hundred", 2: "Two Hundred", 3: "Three Hundred", 4: "Four Hundred",
-                         5: "Five Hundred", 6: "Six Hundred", 7: "Seven Hundred", 8: "Eight Hundred",
-                         9: "Nine Hundred"}
-
-        #thousands
-        thousands = {0: "", 1: 'One Thousand', 2: 'Two Thousand', 3: 'Three Thousand', 4: 'Four Thousand',
-                          5: 'Five Thousand', 6: 'Six Thousand', 7: 'Seven Thousand', 8: 'Eight Thousand',
-                          9: 'Nine Thousand'}
-
-        #tenthousands
-        tenthousands = {0: "", 1: 'Ten Thousand', 2: 'Twenty Thousand', 3: 'Thirty Thousand', 4: 'Forty Thousand',
-                          5: 'Fifty Thousand', 6: 'Sixty Thousand', 7: 'Seventy Thousand', 8: 'Eighy Thousand',
-                          9: 'Ninty Thousand'}
-
-        #ones
+    def getresults(self, fibval):
         if fibval <=10:
-            intval = ones.get(int(fibval))
-            print(fibval, "-", str(intval))
+            intval = self.theones(fibval)
+        elif fibval < 20:
+            intval = self.theteens(fibval)
+        elif fibval < 100:
+            intval = self.thetens(fibval)
+        elif fibval < 1000:
+            intval = self.thehundreds(fibval)
+        elif fibval < 10000:
+            intval = self.thethousands(fibval)
+        elif fibval <100000:
+            intval = self.thetenthousands(fibval)
+        elif fibval <1000000:
+            intval = self.thehundredthousands(fibval)
 
-        #teens
-        elif fibval <20:
-             intval = teens.get(int(fibval))
-             print(fibval, " - ", str(intval))
 
-        #tens
-        elif fibval <100:
-             intval = []
-             intval += str(fibval)
 
-             indexzero = tens.get(int(intval[0]))
-             indexone = ones.get(int(intval[1]))
 
-             print(fibval, "-", indexzero, indexone)
+        return intval
 
-        #humdreds
-        elif fibval <1000:
-             intval = []
-             intval += str(fibval)
+    # ones
+    def theones(self, fibval) -> str:
+        intval = ones.get(int(fibval))
+        return intval
 
-             indexzero = hundreds.get(int(intval[0]))
-             indexone = tens.get(int(intval[1]))
-             indextwo = ones.get(int(intval[2]))
+    # teens
+    def theteens(self, fibval) -> str:
+        intval = teens.get(int(fibval))
+        return intval
 
-             print(fibval, "-", indexzero, indexone, indextwo)
+    # tens
+    def thetens(self, fibval) -> str:
+        intval = []
+        intval += str(fibval)
 
-        #thousands
-        elif fibval <10000:
-            intval = []
-            intval += str(fibval)
+        indexzero = tens.get(int(intval[0]))
+        indexone = ones.get(int(intval[1]))
 
-            indexzero = thousands.get(int(intval[0]))
-            indexone = hundreds.get(int(intval[1]))
-            indextwo = tens.get(int(intval[2]))
-            indexthree = ones.get(int(intval[3]))
+        return indexzero, indexone
 
-            print(fibval, "-", indexzero, indexone, indextwo, indexthree)
+    # humdreds
+    def thehundreds(self, fibval) -> str:
+        intval = []
+        intval += str(fibval)
 
-        #tenthousands
-        elif fibval < 100000:
-            intval = []
-            intval += str(fibval)
+        indexzero = hundreds.get(int(intval[0]))
+        indexone = tens.get(int(intval[1]))
+        indextwo = ones.get(int(intval[2]))
 
-            indexzero = tenthousands.get(int(intval[0]))    # 1
-            indexone = thousands.get(int(intval[1]))        # 7
-            indextwo = hundreds.get(int(intval[2]))         # 7
-            indexthree = tens.get(int(intval[3]))           # 1
-            indexfour = ones.get(int(intval[4]))            # 1
+        return indexzero, indexone, indextwo
 
-            firstwo = int(str(fibval)[:2])                  # Seventeen
-            lastwo = int(str(fibval)[-2:])                  # Eleven
+    # thousands
+    def thethousands(self, fibval) -> str:
+        intval = []
+        intval += str(fibval)
 
-            indexteens = teens.get(int(firstwo))
+        indexzero = thousands.get(int(intval[0]))
+        indexone = hundreds.get(int(intval[1]))
+        indextwo = tens.get(int(intval[2]))
+        indexthree = ones.get(int(intval[3]))
 
-            subindex = ones.get(int(lastwo))
-            subindex2 = teens.get(int(lastwo))
+        return indexzero, indexone, indextwo, indexthree
 
-            if firstwo <20 and lastwo <20:
-                debug = (fibval, "-", indexteens, "Thousand", indextwo, subindex2)
-                print(debug)
-            elif indexone =='' and lastwo <20:
-                debug = (fibval, "-", indexzero, indextwo, indexthree, indexfour)
-                print(debug)
-            elif firstwo <100:
-                indexzero = tens.get(int(intval[0]))
-                indexone = ones.get(int(intval[1]))
-                indextwo = hundreds.get(int(intval[2]))
-                if lastwo <20:
-                    index = teens.get(int(lastwo))
-                    debug = (fibval, "'-",indexzero, indexone, "Thousand", indextwo, teens)
-                else:
-                    indexthree = tens.get(int(intval[3]))
-                    indexfour = ones.get(int(intval[4]))
-                    debug = (fibval, "-", indexzero, indexone, "Thousand",indextwo, indexthree, indexfour)
-                    print(debug)
+    # tenthousands
+    def thetenthousands(self, fibval) -> str:
+        intval = []
+        intval += str(fibval)
 
-        # hundredthousand
-        elif fibval < 1000000:
-            intval = []
-            intval += str(fibval)
+        indexzero = tenthousands.get(int(intval[0]))    # 1
+        indexone = thousands.get(int(intval[1]))        # 7
+        indextwo = hundreds.get(int(intval[2]))         # 7
+        indexthree = tens.get(int(intval[3]))           # 1
+        indexfour = ones.get(int(intval[4]))            # 1
 
-            indexzero = hundreds.get(int(intval[0]))        # 1
-            indexone = tens.get(int(intval[1]))                 # 2
-            indextwo = ones.get(int(intval[2]))         # 1
-            indexthree = hundreds.get(int(intval[3]))           # 3
-            indexfour = tens.get(int(intval[4]))            # 9
-            indexfive = ones.get(int(intval[5]))
+        firstwo = int(str(fibval)[:2])                  # Seventeen
+        lastwo = int(str(fibval)[-2:])                  # Eleven
+        indexteens = teens.get(int(firstwo))
+        subindex = ones.get(int(lastwo))
+        subindex2 = teens.get(int(lastwo))
 
-            firstwo = int(str(fibval)[:2])                  # Seventeen
-            lastwo = int(str(fibval)[-2:])                  # Eleven
+        if firstwo <20 and lastwo <20:
+            debug = (fibval, "-", indexteens, "Thousand", indextwo, subindex2)
+            print(debug)
+        elif indexone =='' and lastwo <20:
+            debug = (fibval, "-", indexzero, indextwo, indexthree, indexfour)
+            print(debug)
+        elif firstwo <100:
+            indexzero = tens.get(int(intval[0]))
+            indexone = ones.get(int(intval[1]))
+            indextwo = hundreds.get(int(intval[2]))
+            if lastwo <20:
+                index = teens.get(int(lastwo))
+                debug = (fibval, "'-",indexzero, indexone, "Thousand", indextwo, teens)
+            else:
+                indexthree = tens.get(int(intval[3]))
+                indexfour = ones.get(int(intval[4]))
+                debug = (fibval, "-", indexzero, indexone, "Thousand",indextwo, indexthree, indexfour)
+        return debug
 
-            indexteens = teens.get(int(lastwo))
+    # hundredthousand
+    def thehundredthousands(self, fibval) -> str:
+        intval = []
+        intval += str(fibval)
+        indexzero = hundredthousands.get(int(intval[0]))    # 3
+        indexone = tens.get(int(intval[1]))         # 1
+        indextwo = ones.get(int(intval[2]))            # 7
+        indexthree = hundreds.get(int(intval[3]))           # 8
+        indexfour = tens.get(int(intval[4]))                # 1
+        indexfive = ones.get(int(intval[5]))                # 1
 
+        second = int(str(intval[1]))
+        third = int(str(intval[2]))
+        secondthird = (second*10+third)
+        index23 = teens.get(int(secondthird))
+
+        lastwo = int(str(fibval)[-2:])
+        indexteens = teens.get(int(lastwo))
+
+        if secondthird <20 and lastwo <20:
+            debug = (fibval, "-", indexzero, index23, "Thousand", indexthree, indexteens)
+        elif secondthird <20:
+            debug = (fibval, "-", indexzero, index23, "Thousand", indexthree, indexfour, indexfive)
+        elif secondthird >19 and lastwo <20:
+            debug = (fibval, "-", indexzero, indexone, indextwo, "Thousand", indexthree, indexteens)
+        elif secondthird >19:
+            debug = (fibval, "-", indexzero, indexone, indextwo, "Thousand", indexthree, indexfour, indexfive)
+        return debug
+
+    """
+            
             subindex = ones.get(int(lastwo))
             subindex2 = teens.get(int(lastwo))
 
@@ -170,10 +213,14 @@ class Challenge4(unittest.TestCase):
             elif indexone =='' and lastwo <20:
                 debug = (fibval, "-", indexzero, indextwo, indexthree, indexfour)
                 print(debug)
-            elif firstwo <100:
-                indexzero = tens.get(int(intval[0]))
+            elif firsthree <1000:
+                if secondthird <20:
+                    indexzero = tens.get(int(intval[0]))
+                    index23 = teens.get(int(secondthird))
+
                 indexone = ones.get(int(intval[1]))
                 indextwo = hundreds.get(int(intval[2]))
+
                 if lastwo <20:
                     index = teens.get(int(lastwo))
                     debug = (fibval, "'-",indexzero, indexone, "Thousand", indextwo, teens)
@@ -182,7 +229,7 @@ class Challenge4(unittest.TestCase):
                     indexfour = ones.get(int(intval[4]))
                     debug = (fibval, "-", indexzero, indexone, "Thousand",indextwo, indexthree, indexfour)
                     print(debug)
-        """
+        "
              for i in range(len(intval -1)):
                  print(tensplace,str(intval))
                  
