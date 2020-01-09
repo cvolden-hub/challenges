@@ -56,18 +56,10 @@ class Challenge4(unittest.TestCase):
     #    self.driver.close()
 
     def test_fib_2(self):
-        # fibval = (fibFuncs.fibLooping(9))  # seting fibval to the value in the nth position (zero based) in fibFuncs
-        # results = self.getresults(fibval)
-        # print(fibval, "-", results)
-        for i in range(0,38):
-            #iterate through the range and for each value print the value and verbal text equivalant
-            results = self.engine(i)
-            print(i, "-", results)
-
-    def engine(self, fibval):
-        fibval = (fibFuncs.fibLooping(fibval))  # seting fibval to the value in the nth position (zero based) in fibFuncs
+        fibval = (fibFuncs.fibLooping(9))  # seting fibval to the value in the nth position (zero based) in fibFuncs
         results = self.getresults(fibval)
-        return results
+        print(fibval, "-", results)
+        assert results == "One"
 
     def getresults(self, fibval):
         if fibval <=10:
@@ -84,7 +76,7 @@ class Challenge4(unittest.TestCase):
             intval = self.thetenthousands(fibval)
         elif fibval <1000000:
             intval = self.thehundredthousands(fibval)
-        return intval  #remove fibval
+        return intval
 
     # ones
     def theones(self, fibval) -> str:
@@ -94,7 +86,7 @@ class Challenge4(unittest.TestCase):
     # teens
     def theteens(self, fibval) -> str:
         intval = teens.get(int(fibval))
-        return fibval, intval
+        return intval
 
     # tens
     def thetens(self, fibval) -> str:
@@ -104,8 +96,8 @@ class Challenge4(unittest.TestCase):
         indexzero = tens.get(int(intval[0]))
         indexone = ones.get(int(intval[1]))
 
-        intval = f"{indexzero} {indexone}"
-        return fibval, intval
+        debug = (fibval, "-", indexzero, indexone)
+        print(debug)
 
     # humdreds
     def thehundreds(self, fibval) -> str:
@@ -116,8 +108,7 @@ class Challenge4(unittest.TestCase):
         indexone = tens.get(int(intval[1]))
         indextwo = ones.get(int(intval[2]))
 
-        intval = f"{indexzero} {indexone} {indextwo}"
-        return fibval, intval
+        return indexzero, indexone, indextwo
 
     # thousands
     def thethousands(self, fibval) -> str:
@@ -129,8 +120,7 @@ class Challenge4(unittest.TestCase):
         indextwo = tens.get(int(intval[2]))
         indexthree = ones.get(int(intval[3]))
 
-        intval = f"{indexzero} {indexone} {indextwo} {indexthree}"
-        return fibval, intval
+        return indexzero, indexone, indextwo, indexthree
 
     # tenthousands
     def thetenthousands(self, fibval) -> str:
@@ -161,14 +151,14 @@ class Challenge4(unittest.TestCase):
             indextwo = hundreds.get(int(intval[2]))
             if lastwo <20:
                 index = teens.get(int(lastwo))
-                intval = f"{indexzero} {indexone} Thousand {indextwo} {index}"
+                debug = (fibval, "'-",indexzero, indexone, "Thousand", indextwo, teens)
             else:
                 indexthree = tens.get(int(intval[3]))
                 indexfour = ones.get(int(intval[4]))
-                intval = f"{indexzero} {indexone} Thousand {indextwo} {indexthree} {indexfour}"
-            return fibval, intval
+                debug = (fibval, "-", "{} {} {} {} {} {}".format(self.indexzero, indexone, "Thousand",indextwo, indexthree, indexfour))
+            return debug
 
-    # hundredthousand
+    # hundredthousand=
     def thehundredthousands(self, fibval) -> str:
         intval = []
         intval += str(fibval)
@@ -188,18 +178,17 @@ class Challenge4(unittest.TestCase):
         indexteens = teens.get(int(lastwo))
 
         if secondthird <20 and lastwo <20:
-            intval = f"{indexzero} {index23} Thousand {indexthree} {indexteens}"
+            debug = (fibval, "-", indexzero, index23, "Thousand", indexthree, indexteens)
         elif secondthird <20:
-            intval = f"{indexzero} {index23} Thousand {indexthree} {indexfour} {indexfive}"
+            debug = (fibval, "-", indexzero, index23, "Thousand", indexthree, indexfour, indexfive)
         elif secondthird >19 and lastwo <20:
-            intval = f"{indexzero} {indexone} {indextwo} Thousand {indexthree} {indexteens}"
+            debug = (fibval, "-", indexzero, indexone, indextwo, "Thousand", indexthree, indexteens)
         elif secondthird >19:
-            intval = f"{indexzero} {indexone} {indextwo} Thousand {indexthree} {indexfour} {indexfive}"
+            #debug = (fibval, "-", indexzero, indexone, indextwo, "Thousand", indexthree, indexfour, indexfive)
+            debug = (f"{} {} {} {} {} {} {}".format(self.indexzero, indexone, indextwo, "Thousand", indexthree, indexfour, indexfive))
+        return debug
 
-        return fibval, intval
-
-    """
-            
+    """      
             subindex = ones.get(int(lastwo))
             subindex2 = teens.get(int(lastwo))
 
