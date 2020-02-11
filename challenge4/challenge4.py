@@ -82,7 +82,7 @@ class Challenge4(unittest.TestCase):
             #iterate through the range and for each value print the value and verbal text equivalant
             fibval, results = self.engine(i)
             #fromengine = fibval
-            print(i, "-", fibval, "-", results)
+            print(i, "-", fibval, "-", results.capitalize())
 
     def engine(self, fibval):
         fibval = (fibFuncs.fibLooping(fibval))  # seting fibval to the value in the nth position (zero based) in fibFuncs
@@ -111,7 +111,6 @@ class Challenge4(unittest.TestCase):
         #    intval = self.theteenmillions(fibval)
         #elif fibval <1000000000:
         #    intval = self.thetrillions(fibval)
-
 
     # ones
     def theones(self, fibval) -> str:
