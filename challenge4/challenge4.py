@@ -78,7 +78,7 @@ trillion = {1: "One Trillion", 2: "Two  Trillion", 3: "Three  Trillion", 4: "Fou
 class Challenge4(unittest.TestCase):
 
     def test_fib_2(self):
-        for i in range(0, 40):
+        for i in range(0, 36):
             #iterate through the range and for each value print the value and verbal text equivalant
             fibval, results = self.engine(i)
             #fromengine = fibval
@@ -106,11 +106,12 @@ class Challenge4(unittest.TestCase):
             intval = self.thehundredthousands(fibval)
         elif fibval <10000000:
             intval = self.themillions(fibval)
-        elif fibval <100000000:
-            intval = self.theteenmillions(fibval)
-        elif fibval <1000000000:
-            intval = self.thetrillions(fibval)
+
         return intval
+        #    intval = self.theteenmillions(fibval)
+        #elif fibval <1000000000:
+        #    intval = self.thetrillions(fibval)
+
 
     # ones
     def theones(self, fibval) -> str:
@@ -228,6 +229,9 @@ class Challenge4(unittest.TestCase):
         intval = []
         intval += str(fibval)
 
+        firstwo = int(str(fibval)[:2])
+        indexteens = teens.get(int(firstwo))
+
         indexzero = biggy.get(int(intval[0]))  # 1
         indexone = hundreds.get(int(intval[1]))  # 7
         indextwo = tens.get(int(intval[2]))  # 8
@@ -236,18 +240,15 @@ class Challenge4(unittest.TestCase):
         indexfive = tens.get(int(intval[5]))
         indexsix = ones.get(int(intval[6]))
 
-        firstwo = int(str(fibval)[2:])
-        indexteens = teens.get(int(firstwo))
         digits = len(intval)
 
         if digits <8:
             intval = f"{indexzero} Million {indexone} {indextwo} {indexthree} Thousand {indexfour} {indexfive} {indexsix}"
-        elif digits >7 and firstwo >12:
+        elif digits >7 and firstwo <10:
             intval = f"{indexteens} Million {indextwo} {indexthree} {indexfour} Thousand {indexfive} {indexsix} {indexseven}"
-
-
         return intval
 
+"""
     # teenmillions
     def theteenmillions(self, fibval) -> str:
         intval = []
@@ -265,8 +266,10 @@ class Challenge4(unittest.TestCase):
         firstwo = int(str(fibval)[2:])
         indexteens = teens.get(int(firstwo))
 
-        if firstwo >12 and firstwo <20:
+        if firstwo >9 and firstwo <20:
             intval = f"{indexteens} Million {indextwo} {indexthree} {indexfour} Thousand {indexfive} {indexsix} {indexseven}"
+        elif firstwo >19 and <100
+            intval = f"{indextens} Million {}"
 
             return intval
 
@@ -286,99 +289,99 @@ class Challenge4(unittest.TestCase):
         return intval
 
 
-    """
-     #def setUp(self):
-     #   self.driver = webdriver.Chrome("../chromedriver.exe")
 
-    #def tearDown(self):
-    #    self.driver.close()
+ #def setUp(self):
+ #   self.driver = webdriver.Chrome("../chromedriver.exe")
 
-    def test_fib_2(self):
-        # fibval = (fibFuncs.fibLooping(9))  # seting fibval to the value in the nth position (zero based) in fibFuncs
-        # results = self.getresults(fibval)
-        # print(fibval, "-", results)
-        for i in range(0,32):
-            #iterate through the range and for each value print the value and verbal text equivalant
-            results = self.engine(i)
-            print(i, "-", results)
-            
-            subindex = ones.get(int(lastwo))
-            subindex2 = teens.get(int(lastwo))
+#def tearDown(self):
+#    self.driver.close()
+
+def test_fib_2(self):
+    # fibval = (fibFuncs.fibLooping(9))  # seting fibval to the value in the nth position (zero based) in fibFuncs
+    # results = self.getresults(fibval)
+    # print(fibval, "-", results)
+    for i in range(0,32):
+        #iterate through the range and for each value print the value and verbal text equivalant
+        results = self.engine(i)
+        print(i, "-", results)
+        
+        subindex = ones.get(int(lastwo))
+        subindex2 = teens.get(int(lastwo))
+
+        if lastwo <20:
+            debug = (fibval, "-", indexzero, indexone, indextwo, "Thousand", indexthree, indexteens)
+            print(debug)
+        else:
+            debug = (fibval, "-", indexzero, indexone, indextwo, "Thousand", indexthree, indexfour, indexfive)
+            print(debug)
+
+        if firstwo <20 and lastwo <20:
+            debug = (fibval, "-", indexteens, "Thousand", indextwo, subindex2)
+            print(debug)
+        elif indexone =='' and lastwo <20:
+            debug = (fibval, "-", indexzero, indextwo, indexthree, indexfour)
+            print(debug)
+        elif firsthree <1000:
+            if secondthird <20:
+                indexzero = tens.get(int(intval[0]))
+                index23 = teens.get(int(secondthird))
+
+            indexone = ones.get(int(intval[1]))
+            indextwo = hundreds.get(int(intval[2]))
 
             if lastwo <20:
-                debug = (fibval, "-", indexzero, indexone, indextwo, "Thousand", indexthree, indexteens)
-                print(debug)
+                index = teens.get(int(lastwo))
+                debug = (fibval, "'-",indexzero, indexone, "Thousand", indextwo, teens)
             else:
-                debug = (fibval, "-", indexzero, indexone, indextwo, "Thousand", indexthree, indexfour, indexfive)
+                indexthree = tens.get(int(intval[3]))
+                indexfour = ones.get(int(intval[4]))
+                debug = (fibval, "-", indexzero, indexone, "Thousand",indextwo, indexthree, indexfour)
                 print(debug)
+    
+         for i in range(len(intval -1)):
+             print(tensplace,str(intval))
+             
+             intval = tensplace.get(int(fibval))
+             numdigits = len(intval)
+             print(fibval, "-", str(intval))
 
-            if firstwo <20 and lastwo <20:
-                debug = (fibval, "-", indexteens, "Thousand", indextwo, subindex2)
-                print(debug)
-            elif indexone =='' and lastwo <20:
-                debug = (fibval, "-", indexzero, indextwo, indexthree, indexfour)
-                print(debug)
-            elif firsthree <1000:
-                if secondthird <20:
-                    indexzero = tens.get(int(intval[0]))
-                    index23 = teens.get(int(secondthird))
-
-                indexone = ones.get(int(intval[1]))
-                indextwo = hundreds.get(int(intval[2]))
-
-                if lastwo <20:
-                    index = teens.get(int(lastwo))
-                    debug = (fibval, "'-",indexzero, indexone, "Thousand", indextwo, teens)
-                else:
-                    indexthree = tens.get(int(intval[3]))
-                    indexfour = ones.get(int(intval[4]))
-                    debug = (fibval, "-", indexzero, indexone, "Thousand",indextwo, indexthree, indexfour)
-                    print(debug)
-        "
-             for i in range(len(intval -1)):
-                 print(tensplace,str(intval))
-                 
-                 intval = tensplace.get(int(fibval))
-                 numdigits = len(intval)
-                 print(fibval, "-", str(intval))
-
-        elif fibval > 19:
-            intval = []
-            intval += str(fibval)
-            numdigits = len(intval)
-
-            i = 0
-
-            if numdigits == 2:
-                tens = intval.get(int[0])
-
-
-                ones = intval.get(int[1])
-
-                print(fibval, "-", str(tens," ", ones))
+    elif fibval > 19:
+        intval = []
+        intval += str(fibval)
+        numdigits = len(intval)
 
         i = 0
 
-        # using string cat functionality
-        if fibval < 22:
-            intval = onesplace.get(int(fibval))
-            print(fibval, "-", str(intval))
-        else:
-            intval = tensplace.get[int(fibval[int(i)])]
-            print(fibval, "-", str(intval))
+        if numdigits == 2:
+            tens = intval.get(int[0])
 
-      
-        so if the value is > 19 < 100
-        split number into parts in a list
-        get the len of list
-        if len = 2
-        the number is greater than 19
-        get the first digit and map to tensplace then get second num and map to ones
-        
-        if len = 3
-        etc    
+
+            ones = intval.get(int[1])
+
+            print(fibval, "-", str(tens," ", ones))
+
+    i = 0
+
+    # using string cat functionality
+    if fibval < 22:
+        intval = onesplace.get(int(fibval))
+        print(fibval, "-", str(intval))
+    else:
+        intval = tensplace.get[int(fibval[int(i)])]
+        print(fibval, "-", str(intval))
+
+  
+    so if the value is > 19 < 100
+    split number into parts in a list
+    get the len of list
+    if len = 2
+    the number is greater than 19
+    get the first digit and map to tensplace then get second num and map to ones
     
-        """
+    if len = 3
+    etc    
+
+    """
 
 
 

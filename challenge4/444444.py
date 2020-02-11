@@ -183,9 +183,7 @@ class Challenge4(unittest.TestCase):
             debug = (fibval, "-", indexzero, index23, "Thousand", indexthree, indexfour, indexfive)
         elif secondthird >19 and lastwo <20:
             debug = (fibval, "-", indexzero, indexone, indextwo, "Thousand", indexthree, indexteens)
-        elif secondthird >19:
-            #debug = (fibval, "-", indexzero, indexone, indextwo, "Thousand", indexthree, indexfour, indexfive)
-            debug = (f"{} {} {} {} {} {} {}".format(self.indexzero, indexone, indextwo, "Thousand", indexthree, indexfour, indexfive))
+
         return debug
 
     """      
