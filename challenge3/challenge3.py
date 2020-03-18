@@ -20,13 +20,9 @@ class Challenge3(unittest.TestCase):
         for x in makemodel:
             print(x.text + " - " + x.get_attribute("href"))
 
-    # gets model
-    def test_challenge3WhileLoop(self):
-        self.driver.get("https://www.copart.com")
-        self.assertIn("Copart", self.driver.title)
-
+    #gets model
+    #def test_challenge3WhileLoop(self):
         categories = self.driver.find_elements_by_xpath("//a[starts-with(@href,'./popular/category')]")
-
         i = 0
         while i <len(categories):
             print(categories[i].text + " - " + categories[1].get_attribute("href"))

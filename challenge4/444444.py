@@ -58,8 +58,9 @@ class Challenge4(unittest.TestCase):
     def test_fib_2(self):
         fibval = (fibFuncs.fibLooping(9))  # seting fibval to the value in the nth position (zero based) in fibFuncs
         results = self.getresults(fibval)
+        assert (fibval <= 8), "Fibinacci number exceeds homework request"
         print(fibval, "-", results)
-        assert results == "One"
+
 
     def getresults(self, fibval):
         if fibval <=10:

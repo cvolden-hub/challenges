@@ -76,9 +76,8 @@ trillion = {1: "One Trillion", 2: "Two  Trillion", 3: "Three  Trillion", 4: "Fou
                     9: "Nine  Trillion"}
 
 class Challenge4(unittest.TestCase):
-
     def test_fib_2(self):
-        for i in range(0, 36):
+        for i in range(0, 37):
             #iterate through the range and for each value print the value and verbal text equivalant
             fibval, results = self.engine(i)
             #fromengine = fibval
@@ -106,11 +105,11 @@ class Challenge4(unittest.TestCase):
             intval = self.thehundredthousands(fibval)
         elif fibval <10000000:
             intval = self.themillions(fibval)
-
+        elif fibval <100000000:
+            intval = self.theteenmillions(fibval)
+        elif fibval <1000000000:
+            intval = self.thetrillions(fibval)
         return intval
-        #    intval = self.theteenmillions(fibval)
-        #elif fibval <1000000000:
-        #    intval = self.thetrillions(fibval)
 
     # ones
     def theones(self, fibval) -> str:
@@ -232,10 +231,10 @@ class Challenge4(unittest.TestCase):
         indexteens = teens.get(int(firstwo))
 
         indexzero = biggy.get(int(intval[0]))  # 1
-        indexone = hundreds.get(int(intval[1]))  # 7
-        indextwo = tens.get(int(intval[2]))  # 8
-        indexthree = ones.get(int(intval[3]))  # 1
-        indexfour = hundreds.get(int(intval[4]))  # 1
+        indexone = hundreds.get(int(intval[1])) # 7
+        indextwo = tens.get(int(intval[2]))   # 8
+        indexthree = ones.get(int(intval[3]))   # 1
+        indexfour = hundreds.get(int(intval[4]))   # 1
         indexfive = tens.get(int(intval[5]))
         indexsix = ones.get(int(intval[6]))
 
@@ -247,7 +246,6 @@ class Challenge4(unittest.TestCase):
             intval = f"{indexteens} Million {indextwo} {indexthree} {indexfour} Thousand {indexfive} {indexsix} {indexseven}"
         return intval
 
-"""
     # teenmillions
     def theteenmillions(self, fibval) -> str:
         intval = []
@@ -255,7 +253,7 @@ class Challenge4(unittest.TestCase):
 
         indexzero = ones.get(int(intval[0]))  # 1
         indexone = ones.get(int(intval[1]))  # 7
-        indextwo = hundreds.get(intval[2])
+        indextwo = hundreds.get(int(intval[2]))
         indexthree = tens.get(int(intval[3]))  # 8
         indexfour = ones.get(int(intval[4]))  # 1
         indexfive = hundreds.get(int(intval[5]))  # 1
@@ -265,13 +263,11 @@ class Challenge4(unittest.TestCase):
         firstwo = int(str(fibval)[2:])
         indexteens = teens.get(int(firstwo))
 
-        if firstwo >9 and firstwo <20:
-            intval = f"{indexteens} Million {indextwo} {indexthree} {indexfour} Thousand {indexfive} {indexsix} {indexseven}"
-        elif firstwo >19 and <100
-            intval = f"{indextens} Million {}"
+        intval = f"{indexteens} Million {indextwo} {indexthree} {indexfour} Thousand {indexfive} {indexsix} {indexseven}"
+        return intval
 
-            return intval
 
+"""
     # trillions
     def thetrillions(self, fibval) -> str:
         intval = []

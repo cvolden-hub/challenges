@@ -22,49 +22,48 @@ class Challenge5(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome("../chromedriver.exe")
 
-    def tearDown(self):
-        self.driver.close()
+   # def tearDown(self):
+        #self.driver.close()
 
-    def test_challenge5(self):
-        self.driver.maximize_window()
+    def test_lauchsite(self):
         self.driver.get("https://www.copart.com")
         self.assertIn("Copart", self.driver.title)
+        self.driver.maximize_window()
 
-        # find search field and enter Porsche, enter txt via send _key
+        # search on brand
         searchinput = self.driver.find_element_by_id("input-search")
         searchinput.send_keys("PORSCHE")
-
-        # FIGURE OUT HOW TO IMPLEMNET THIS
-        #myElem = WebDriverWait(self.driver, wait).until(EC.presence_of_element_located((By.XPATH, load)))
-        #except TimeoutException:
-        #print("Loading took too much time!")
-
-        sleep(5)
         searchinput.send_keys(Keys.RETURN)
-        sleep(5)
 
-        # clicking drpdwn
+        # change view to 100
+        #wait = WebDriverWait(driver,5)
+        #element = wait.until(EC.element_to_be_clickable(By.ID, 'serverSideDataTable_length'))
         drpdwn = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         drpdwn.click()
-        sleep(5)
-
-        # select element 2 fromm list
         drpdwn.send_keys(Keys.ARROW_DOWN)
         drpdwn.send_keys(Keys.ARROW_DOWN)
-        sleep(5)
         drpdwn.send_keys(Keys.ENTER)
 
-        sleep(5)
+        #need a wait
+        # this sorts the column ascending to desending
+        column = self.driver.find_element_by_id("lot_model")
+        column.click()
 
-        # now get the models from the page
+        #wait
+    #-----------------------------------------------------------------
 
-        """  
-        modlist = {}
+        #get  the model and iterate down the page putting in list or dictionay
+        modlist = []
 
-        models = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
+        models = self.driver.find_elements(By.XPATH, "//*[ @ id = 'serverSideDataTable'] / tbody / tr[1] / td[6] / span")
+        for i in models:
+            print(i.text + " - " + i.get_attribute("lotsearchLotmodel"))
+
+       # modlist = []
+
+        #models = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
 
         # iterate
-
         for model in models:
             if model.text in models:
                 models[model.text] += 1
@@ -73,10 +72,12 @@ class Challenge5(unittest.TestCase):
 
             modlist[model.text] +=1
 
+
         print(modlist)
 
-       
-        modlist = {}
+
+"""
+       modlist = {}
         
         models = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
         
@@ -111,9 +112,6 @@ class Challenge5(unittest.TestCase):
 
         print("There are ", damtot, " vehicles with Front End damage")
 
-
-        """
-
         modlist = []
 
         nummod = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span")
@@ -139,6 +137,7 @@ class Challenge5(unittest.TestCase):
             damtot = damlist.count('FRONT END')
 
         print("There are ",damtot," vehicles with Front End damage")
+"""
 
 
 if __name__ == '__main__':
