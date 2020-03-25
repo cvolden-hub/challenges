@@ -34,21 +34,23 @@ class Challenge5(unittest.TestCase):
         searchinput = self.driver.find_element_by_id("input-search")
         searchinput.send_keys("PORSCHE")
         searchinput.send_keys(Keys.RETURN)
-
+        sleep(5)
         # change view to 100
         #wait = WebDriverWait(driver,5)
         #element = wait.until(EC.element_to_be_clickable(By.ID, 'serverSideDataTable_length'))
+
+
         drpdwn = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         drpdwn.click()
         drpdwn.send_keys(Keys.ARROW_DOWN)
         drpdwn.send_keys(Keys.ARROW_DOWN)
         drpdwn.send_keys(Keys.ENTER)
-
+        sleep(5)
         #need a wait
         # this sorts the column ascending to desending
         column = self.driver.find_element_by_id("lot_model")
         column.click()
-
+        sleep(5)
         #wait
     #-----------------------------------------------------------------
 
@@ -56,24 +58,25 @@ class Challenge5(unittest.TestCase):
         modlist = []
 
         models = self.driver.find_elements(By.XPATH, "//*[ @ id = 'serverSideDataTable'] / tbody / tr[1] / td[6] / span")
+        #print(models)
         for i in models:
-            print(i.text + " - " + i.get_attribute("lotsearchLotmodel"))
-
+            print(i.text)    # + " - " + i.get_attribute("data-uname")
+            modlist.append(models)
        # modlist = []
 
         #models = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
 
         # iterate
-        for model in models:
-            if model.text in models:
-                models[model.text] += 1
-            else:
-                models.append[model.text]
+       # for model in models:
+       #     if model.text in models:
+         #       models[model.text] += 1
+         #   else:
+         #       models.append[model.text]
 
-            modlist[model.text] +=1
+         #  modlist[model.text] +=1
 
 
-        print(modlist)
+        #print(modlist)
 
 
 """
