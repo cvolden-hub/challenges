@@ -39,7 +39,6 @@ class Challenge5(unittest.TestCase):
         #wait = WebDriverWait(driver,5)
         #element = wait.until(EC.element_to_be_clickable(By.ID, 'serverSideDataTable_length'))
 
-
         drpdwn = self.driver.find_element(By.XPATH, "//select[@name='serverSideDataTable_length']")
         drpdwn.click()
         drpdwn.send_keys(Keys.ARROW_DOWN)
@@ -48,38 +47,57 @@ class Challenge5(unittest.TestCase):
         sleep(5)
         #need a wait
         # this sorts the column ascending to desending
-        column = self.driver.find_element_by_id("lot_model")
-        column.click()
+        #column = self.driver.find_element_by_id("lot_model")
+        #column.click()
         sleep(5)
         #wait
-    #-----------------------------------------------------------------
 
         #get  the model and iterate down the page putting in list or dictionay
         modlist = []
 
-        models = self.driver.find_elements(By.XPATH, "//*[ @ id = 'serverSideDataTable'] / tbody / tr[1] / td[6] / span")
-        #print(models)
-        for i in models:
-            print(i.text)    # + " - " + i.get_attribute("data-uname")
-            modlist.append(models)
-       # modlist = []
+        nummod = models = self.driver.find_elements(By.XPATH, "//*[ @ id = 'serverSideDataTable']/tbody/tr/td[6]/span")
+        num = len(nummod)
 
-        #models = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
+        for i in range(num):
+            models = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span".format(i + 1))
+            #print(models.text)
+            modlist.append(models.text)
+
+        print(Counter(modlist).items())
+
+        damlist = []
+
+        numdam = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[12]/span")
+        num2 = len(numdam)
+
+        for x in range(num2):
+            damage = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[12]/span".format(x + 1))
+            #print(damage.text)
+            damlist.append(damage.text)
+
+        print(Counter(damlist))
+        damtot = damlist.count('FRONT END')
+
+        print("There are ", damtot, " vehicles with Front End damage")
+
+    """
+         
+         models = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
 
         # iterate
-       # for model in models:
-       #     if model.text in models:
-         #       models[model.text] += 1
-         #   else:
-         #       models.append[model.text]
+        for model in models:
+            if model.text in models:
+                models[model.text] += 1
+            else:
+                models.append[model.text]
 
-         #  modlist[model.text] +=1
+            modlist[model.text] +=1
 
 
         #print(modlist)
 
 
-"""
+
        modlist = {}
         
         models = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[6]/span")
@@ -88,23 +106,27 @@ class Challenge5(unittest.TestCase):
             modlist[model.text] +=1
 
             print(modlist)
-        
-
         ##----------------------------------------------------------------------------------------------------------
+        
+        modlist.append(models.text)
+            #print(i.text)    # + " - " + i.get_attribute("data-uname")
+            modlinary.update({'key1': 'i.text'})
+            print(modlinary)
+            
         # iterate
         modlist = []
-
-        for i in range(num):
-            models = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span"
-                                                        .format(i + 1))
+        i = 0
+        models = self.driver.find_element(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr[{}]/td[6]/span"
+                                                    .format(i + 1))
+        num1 = len(models)
+        for i in range(num1):
             modlist.append(models.text)
 
         print(Counter(modlist))
-         
+
 
         # now get the damage from the page
         damlist = []
-
         damages = self.driver.find_elements(By.XPATH, "//*[@id='serverSideDataTable']/tbody/tr/td[12]/span"
                                                       .format(i + 1))
         num2 = len(damages)
@@ -140,8 +162,7 @@ class Challenge5(unittest.TestCase):
             damtot = damlist.count('FRONT END')
 
         print("There are ",damtot," vehicles with Front End damage")
-"""
-
+    """
 
 if __name__ == '__main__':
     unittest.main()

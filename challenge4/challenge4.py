@@ -84,7 +84,7 @@ class Challenge4(unittest.TestCase):
             print(i, "-", fibval, "-", results.capitalize())
 
     def engine(self, fibval):
-        fibval = (fibFuncs.fibLooping(fibval))  # seting fibval to the value in the nth position (zero based) in fibFuncs
+        fibval = (fibFuncs.fibLooping(fibval))   # set fibval to the value in the nth position (zero based) in fibFuncs
         results = self.getresults(fibval)
         return fibval, results
 
